@@ -3,7 +3,9 @@
 using namespace std;
 
 int main() {
+    cout << "testing";
 
+/*
     BiArray a; // zero con
     a.push_back(1);
     a.push_back(2);
@@ -43,5 +45,6 @@ int main() {
     cout << a.print() << endl;
     cout << a.getSize() << endl;
     cout << a.getCapacity() << endl;
+*/
 
 }

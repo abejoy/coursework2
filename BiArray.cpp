@@ -1,10 +1,8 @@
 #include "BiArray.h"
 
 // default constructor
-BiArray::BiArray() : {
-    size = 0;
-    capacity = INITIALCAP;
-    middle = capacity / 2;
+BiArray::BiArray(): size(0), capacity(INITIALCAP), middle(INITIALCAP/2){
+
 }
 
 // value constructor
