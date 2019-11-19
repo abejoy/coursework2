@@ -75,6 +75,9 @@ public:
     // your resizing...
     int getCapacity() const;
 
+
+    int getHeadEmptyCount() const;
+
     // Returns a string that lists all elements, in order, separated by
     // a space and with square brackets at the beginning and the end
     // e.g. "[4 2 13 5 77]"
@@ -100,7 +103,6 @@ private:
     // TODO: add your private member data (and possibly functions)
     int size;
     int *data;
-    int start;
     int emptyHead;
     int emptyTail;
     int currentCapacity;

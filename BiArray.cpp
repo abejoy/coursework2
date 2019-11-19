@@ -2,10 +2,11 @@
 #include "BiArray.h"
 
 // default constructor
-BiArray::BiArray(): size(0), start(INITIALCAP/2), currentCapacity(INITIALCAP){
+BiArray::BiArray(): size(0), currentCapacity(INITIALCAP){
     data = new int[getCapacity()];
-    emptyHead = getCapacity()/2 -1;
+    emptyHead = getCapacity()/2;
     emptyTail = getCapacity()/2;
+    data += getCapacity()/2;
 }
 
 // value constructor
@@ -26,12 +27,30 @@ BiArray::BiArray(int arr[], int size) : size(size), emptyHead(size), emptyTail(s
 
 // destructor
 BiArray::~BiArray() {
-    delete data;
 }
 
 // copy constructor
-BiArray::BiArray(const BiArray &other) {
-    // IMPLEMENT ME
+BiArray::BiArray(const BiArray &other): size(other.getSize()), currentCapacity(other.getCapacity()), emptyHead(other.getHeadEmptyCount()), emptyTail(other.emptyTail){
+    data = new int[getCapacity()];
+    for(int i = 0; i < getCapacity(); i++){
+        if(i >= getHeadEmptyCount() && i < getHeadEmptyCount() + getSize()){
+            *(data+i) = *(other.data - other.getHeadEmptyCount() +i);
+        }
+    }
+    data += getHeadEmptyCount();
+
+/*    size = other.size;
+    currentCapacity = other.currentCapacity;
+
+
+    //Create new array
+    data = new int[currentCapacity];
+
+    //copy values of other array into new arr_
+    for(int i = 0; i < size; i++){
+        data[i] = other.data[i];
+    }*/
+
 }
 
 // move constructor
@@ -106,15 +125,16 @@ bool BiArray::pop_front() {
 }
 
 int BiArray::getSize() const {
-    // IMPLEMENT ME
-    // below are just stub code
     return size;
 }
 
 int BiArray::getCapacity() const {
-    // IMPLEMENT ME
-    // below are just stub code
+
    return currentCapacity;
+}
+
+int BiArray::getHeadEmptyCount() const {
+    return emptyHead;
 }
 
 string BiArray::print() const {
