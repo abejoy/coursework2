@@ -55,7 +55,20 @@ BiArray::BiArray(const BiArray &other): size(other.getSize()), currentCapacity(o
 
 // move constructor
 BiArray::BiArray(BiArray &&other) {
-    // IMPLEMENT ME
+    size = other.size;
+    currentCapacity = other.currentCapacity;
+    emptyHead = other.getHeadEmptyCount();
+    emptyTail = other.emptyTail;
+
+    //Create new array
+    data = new int[currentCapacity];
+
+    //copy values of other array into new arr_
+    for(int i = 0; i < size; i++){
+        data[i] = other.data[i];
+    }
+
+    other.~BiArray();
 }
 
 // copy assignment
