@@ -24,7 +24,7 @@ BiArray::BiArray(int arr[], int size) : size(size){
 
 // destructor
 BiArray::~BiArray() {
-    // IMPLEMENT ME
+    delete data;
 }
 
 // copy constructor
@@ -118,8 +118,15 @@ int BiArray::getCapacity() const {
 string BiArray::print() const {
     // IMPLEMENT ME
     // below are just stub code
-    string removeMe = "";
-    return removeMe;
+    string toReturn = "[";
+    for(int i = 0; i < getSize(); i++){
+        toReturn +=  to_string(*(data+i));
+        if(i != getSize()-1){
+            toReturn += " ";
+        }
+    }
+    toReturn += "]";
+    return toReturn;
 }
 
 string BiArray::printAll() const {

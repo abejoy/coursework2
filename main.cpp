@@ -7,10 +7,7 @@ int main() {
     int arr2[10] = {0,1,2,3,4,5,6,7,8,9};
     BiArray a2(arr2,10);
 
-    if (a2.getSize() != 10 || a2.getCapacity() != 30)
-        cout <<"value constructor incorrect size or capacity" << endl;
-    for(int i=0;i<10;i++)
-        if (a2[i] != i) cout <<"value constructor incorrect content " << a2[i] << "-" << i << endl;
+    cout<< a2.print() << endl;
 
 /*
     BiArray a; // zero con
