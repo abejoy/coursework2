@@ -99,9 +99,8 @@ public:
 private:
     // TODO: add your private member data (and possibly functions)
     int size;
-    int capacity;
-    int middle;
-    int data[];
+    int *data;
+    int start;
 };
 
 static constexpr int INITIALCAP = 5;

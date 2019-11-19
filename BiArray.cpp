@@ -1,13 +1,25 @@
+#include <iostream>
 #include "BiArray.h"
 
 // default constructor
-BiArray::BiArray(): size(0), capacity(INITIALCAP), middle(INITIALCAP/2){
-
+BiArray::BiArray(): size(0), start(INITIALCAP/2){
+    data = new int[getCapacity()];
 }
 
 // value constructor
-BiArray::BiArray(int arr[], int size) {
+BiArray::BiArray(int arr[], int size) : size(size){
     // IMPLEMENT ME
+    data = new int[getCapacity()];
+    int initMiddle = getSize();
+    if(getSize() == 1){
+        initMiddle = getCapacity()/2;
+    }
+
+    data += initMiddle;
+
+    for(int i = 0; i < size; i++){
+        *(data+i) =  arr[i];
+    }
 }
 
 // destructor
@@ -58,15 +70,15 @@ bool BiArray::set(int i, int v) {
 int BiArray::operator[](int i) const {
     // IMPLEMENT ME
     // below are just stub code
-    int removeMe = 0;
-    return removeMe;
+
+    return data[i];
 }
 
 int &BiArray::operator[](int i) {
     // IMPLEMENT ME
     // below are just stub code
-    int removeMe = 0;
-    return removeMe;
+
+    return data[i];
 }
 
 void BiArray::push_back(int v) {
@@ -94,15 +106,13 @@ bool BiArray::pop_front() {
 int BiArray::getSize() const {
     // IMPLEMENT ME
     // below are just stub code
-    int removeMe = 0;
-    return removeMe;
+    return size;
 }
 
 int BiArray::getCapacity() const {
     // IMPLEMENT ME
     // below are just stub code
-    int removeMe = 0;
-    return removeMe;
+   return (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
 }
 
 string BiArray::print() const {
