@@ -2,12 +2,14 @@
 #include "BiArray.h"
 
 // default constructor
-BiArray::BiArray(): size(0), start(INITIALCAP/2){
+BiArray::BiArray(): size(0), start(INITIALCAP/2), currentCapacity(INITIALCAP){
     data = new int[getCapacity()];
+    emptyHead = getCapacity()/2 -1;
+    emptyTail = getCapacity()/2;
 }
 
 // value constructor
-BiArray::BiArray(int arr[], int size) : size(size){
+BiArray::BiArray(int arr[], int size) : size(size), emptyHead(size), emptyTail(size), currentCapacity((LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP){
     // IMPLEMENT ME
     data = new int[getCapacity()];
     int initMiddle = getSize();
@@ -112,7 +114,7 @@ int BiArray::getSize() const {
 int BiArray::getCapacity() const {
     // IMPLEMENT ME
     // below are just stub code
-   return (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
+   return currentCapacity;
 }
 
 string BiArray::print() const {
@@ -130,10 +132,19 @@ string BiArray::print() const {
 }
 
 string BiArray::printAll() const {
-    // IMPLEMENT ME
-    // below are just stub code
-    string removeMe = "";
-    return removeMe;
+    string toReturn = "[";
+    for(int i = 0; i< getCapacity(); i++){
+        if(i < emptyHead || i >= emptyHead + size){
+            toReturn += "X";
+        }else {
+            toReturn += to_string(*(data - emptyHead + i));
+        }
+        if(i != getCapacity()-1){
+            toReturn += " ";
+        }
+    }
+    toReturn += "]";
+    return toReturn;
 }
 
 bool operator==(const BiArray &lhs, const BiArray &rhs) {

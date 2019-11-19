@@ -101,6 +101,9 @@ private:
     int size;
     int *data;
     int start;
+    int emptyHead;
+    int emptyTail;
+    int currentCapacity;
 };
 
 static constexpr int INITIALCAP = 5;

@@ -4,10 +4,11 @@ using namespace std;
 
 int main() {
     cout << "testing" << endl;
-    int arr2[10] = {0,1,2,3,4,5,6,7,8,9};
-    BiArray a2(arr2,10);
+    int arr2[3] = {2,3,4};
+    BiArray a2(arr2,3);
 
     cout<< a2.print() << endl;
+    cout<< a2.printAll() << endl;
 
 /*
     BiArray a; // zero con
