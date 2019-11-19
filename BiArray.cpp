@@ -73,18 +73,41 @@ BiArray::BiArray(BiArray &&other) {
 
 // copy assignment
 BiArray &BiArray::operator=(const BiArray &other) {
-    // IMPLEMENT ME
-    // below are just stub code
-    BiArray &removeMe = *this;
-    return removeMe;
+    size = other.size;
+    currentCapacity = other.currentCapacity;
+    emptyHead = other.getHeadEmptyCount();
+    emptyTail = other.emptyTail;
+
+    //Create new array
+    data = new int[currentCapacity];
+
+    //copy values of other array into new arr_
+    for(int i = 0; i < size; i++){
+        data[i] = other.data[i];
+    }
+
+
+    return *this;
 }
 
 // move assignment
 BiArray &BiArray::operator=(BiArray &&other) {
-    // IMPLEMENT ME
-    // below are just stub code
-    BiArray &removeMe = *this;
-    return removeMe;
+    size = other.size;
+    currentCapacity = other.currentCapacity;
+    emptyHead = other.getHeadEmptyCount();
+    emptyTail = other.emptyTail;
+
+    //Create new array
+    data = new int[currentCapacity];
+
+    //copy values of other array into new arr_
+    for(int i = 0; i < size; i++){
+        data[i] = other.data[i];
+    }
+
+    other.~BiArray();
+
+    return *this;
 }
 
 bool BiArray::get(int i, int &v) const {
