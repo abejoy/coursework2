@@ -111,17 +111,21 @@ BiArray &BiArray::operator=(BiArray &&other) {
 }
 
 bool BiArray::get(int i, int &v) const {
-    // IMPLEMENT ME
-    // below are just stub code
-    bool removeMe = false;
-    return removeMe;
+    if(i > getSize() - 1 || i < 0){
+        return false;
+    }else{
+        v = data[i];
+        return true;
+    }
 }
 
 bool BiArray::set(int i, int v) {
-    // IMPLEMENT ME
-    // below are just stub code
-    bool removeMe = false;
-    return removeMe;
+    if(i > getSize() - 1 || i < 0){
+        return false;
+    }else{
+        data[i] = v;
+        return true;
+    }
 }
 
 int BiArray::operator[](int i) const {
