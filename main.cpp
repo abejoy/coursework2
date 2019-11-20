@@ -5,6 +5,18 @@ using namespace std;
 int main() {
 
 
+/*    int arr[]{0};
+    BiArray a{arr,1};
+
+    cout << a.printAll() << endl;
+    a.push_front(1);
+    cout << a.printAll() << endl;
+    a.push_front(2);
+    cout << a.printAll() << endl;
+    a.push_front(3);
+    cout << a.printAll() << endl;
+    cout << a.print()<< endl;*/
+
 
 
 /*

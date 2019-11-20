@@ -207,7 +207,29 @@ bool BiArray::pop_back() {
 }
 
 void BiArray::push_front(int v) {
-    // IMPLEMENT ME
+    if(getHeadEmptyCount() != 0){
+        //can push
+        data--;
+        *(data) = v;
+        size++;
+        emptyHead--;
+    }else{
+        //cannot push without making aray bigger
+        const int newCapacity = (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
+        int temparr[getSize()];
+        for(int i = 0; i < getSize(); i++){
+            temparr[i] = data[i];
+        }
+        data = new int[newCapacity];
+        data += getSize();
+        for(int i = 0; i < getSize(); i++){
+            data[i] = temparr[i];
+        }
+        currentCapacity  = newCapacity;
+        emptyHead = getSize();
+        push_front(v);
+
+    }
 }
 
 bool BiArray::pop_front() {
