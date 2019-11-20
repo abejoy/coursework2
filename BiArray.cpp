@@ -209,10 +209,13 @@ bool BiArray::pop_back() {
 void BiArray::push_front(int v) {
     if(getHeadEmptyCount() != 0){
         //can push
-        data--;
+        if(size > 0) {
+            data--;
+            emptyHead--;
+        }
         *(data) = v;
         size++;
-        emptyHead--;
+
     }else{
         //cannot push without making aray bigger
         const int newCapacity = (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
@@ -314,15 +317,18 @@ string BiArray::printAll() const {
 }
 
 bool operator==(const BiArray &lhs, const BiArray &rhs) {
-    // IMPLEMENT ME
-    // below are just stub code
-    bool removeMe = false;
-    return removeMe;
+    if(lhs.getSize() != rhs.getSize()){
+        return false;
+    }
+    for(int i=0; i < lhs.getSize(); i++){
+        if(lhs[i] != rhs[i]){
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool operator!=(const BiArray &lhs, const BiArray &rhs) {
-    // IMPLEMENT ME
-    // below are just stub code
-    bool removeMe = false;
-    return removeMe;
+    return !operator==(lhs, rhs);
 }
