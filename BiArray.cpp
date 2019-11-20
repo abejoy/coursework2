@@ -10,15 +10,19 @@ BiArray::BiArray(): size(0), currentCapacity(INITIALCAP){
 }
 
 // value constructor
-BiArray::BiArray(int arr[], int size) : size(size), emptyHead(size), emptyTail(size), currentCapacity((LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP){
+BiArray::BiArray(int arr[], int size) : size(size), currentCapacity((LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP){
     // IMPLEMENT ME
     data = new int[getCapacity()];
-    int initMiddle = getSize();
     if(getSize() == 1){
-        initMiddle = getCapacity()/2;
+        data += getCapacity()/2;
+        emptyHead = getCapacity()/2;
+        emptyTail = getCapacity()/2;
     }
-
-    data += initMiddle;
+    else{
+        data += getSize();
+        emptyHead = getSize();
+        emptyTail = getSize();
+    }
 
     for(int i = 0; i < size; i++){
         *(data+i) =  arr[i];
@@ -143,7 +147,27 @@ int &BiArray::operator[](int i) {
 }
 
 void BiArray::push_back(int v) {
-    // IMPLEMENT ME
+    //check if can push back
+    if(getHeadEmptyCount() + getSize() < getCapacity()){
+        //can push
+        *(data+getSize()) = v;
+        size++;
+    }else{
+        //cannot push without making aray bigger
+        const int newCapacity = (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
+        int temparr[getSize()];
+        for(int i = 0; i < getSize(); i++){
+            temparr[i] = data[i];
+        }
+        data = new int[newCapacity];
+        data += getSize();
+        for(int i = 0; i < getSize(); i++){
+            data[i] = temparr[i];
+        }
+        currentCapacity  = newCapacity;
+        emptyHead = getSize();
+        push_back(v);
+    }
 }
 
 bool BiArray::pop_back() {
