@@ -6,21 +6,6 @@ int main() {
 
 
 
-/*    int arr[]{0};
-    BiArray a{arr, 1};
-    cout << a.printAll() << endl;
-    a.push_back(1);
-    cout << a.printAll() << endl;
-
-    a.push_back(2);
-    cout << a.printAll() << endl;
-
-    a.push_back(3);
-    cout << a.printAll() << endl;
-    cout << a.getSize() << endl;
-    cout << a.getCapacity()<< endl;
-    cout << a.getHeadEmptyCount()<< endl;*/
-
 
 /*
     BiArray a; // zero con

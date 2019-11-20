@@ -171,10 +171,39 @@ void BiArray::push_back(int v) {
 }
 
 bool BiArray::pop_back() {
-    // IMPLEMENT ME
-    // below are just stub code
-    bool removeMe = false;
-    return removeMe;
+    //bi array is empty
+    if(getSize() == 0){
+        return false;
+    }
+
+    //the popping from back
+    size = getSize() - 1;
+
+    //check if needing resize
+    if(getCapacity() > HI_THRESHOLD * getSize()){
+        int newCapacity = (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
+        int tempArr[getSize()];
+        for(int i = 0; i < getSize(); i++){
+            tempArr[i] = data[i];
+        }
+
+        data = new int[newCapacity];
+        currentCapacity = newCapacity;
+        if(getSize() == 1){
+            data += getCapacity()/2;
+            emptyHead = getCapacity()/2;
+        }else{
+            data += getSize();
+            emptyHead = getSize();
+        }
+
+        for(int i = 0; i < getSize(); i++){
+            data[i] = tempArr[i];
+        }
+
+    }
+
+    return true;
 }
 
 void BiArray::push_front(int v) {
