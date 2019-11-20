@@ -9,15 +9,32 @@ int main() {
     BiArray a{arr,1};
 
     cout << a.printAll() << endl;
-    a.push_front(1);
+    a.push_back(1);
     cout << a.printAll() << endl;
-    a.push_front(2);
+    a.push_back(2);
     cout << a.printAll() << endl;
-    a.push_front(3);
+    a.push_back(3);
     cout << a.printAll() << endl;
-    cout << a.print()<< endl;*/
-
-
+    a.push_back(4);
+    cout << a.printAll() << endl;
+    a.push_back(5);
+    cout << a.printAll() << endl;
+    a.push_back(6);
+    cout << a.printAll() << endl;
+    a.pop_front();
+    cout << a.printAll() << endl;
+    a.pop_front();
+    cout << a.printAll() << endl;
+    a.pop_front();
+    cout << a.printAll() << endl;
+    a.pop_front();
+    cout << a.printAll() << endl;
+    a.pop_front();
+    cout << a.printAll() << endl;
+    a.pop_front();
+    cout << a.printAll() << endl;
+    a.pop_front();
+    cout << a.printAll() << endl;*/
 
 /*
     BiArray a; // zero con
