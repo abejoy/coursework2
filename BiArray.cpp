@@ -51,55 +51,21 @@ BiArray::BiArray(const BiArray &other): size(other.getSize()), currentCapacity(o
 
 // move constructor
 BiArray::BiArray(BiArray &&other) {
-    size = other.size;
-    currentCapacity = other.currentCapacity;
-    emptyHead = other.getHeadEmptyCount();
-    emptyTail = other.emptyTail;
-
-    //Create new array
-    data = new int[currentCapacity];
-
-    //copy values of other array into new arr_
-    for(int i = 0; i < size; i++){
-        data[i] = other.data[i];
-    }
+    copyOther(other);
 
     other.~BiArray();
 }
 
 // copy assignment
 BiArray &BiArray::operator=(const BiArray &other) {
-    size = other.size;
-    currentCapacity = other.currentCapacity;
-    emptyHead = other.getHeadEmptyCount();
-    emptyTail = other.emptyTail;
-
-    //Create new array
-    data = new int[currentCapacity];
-
-    //copy values of other array into new arr_
-    for(int i = 0; i < size; i++){
-        data[i] = other.data[i];
-    }
-
+    copyOther(other);
 
     return *this;
 }
 
 // move assignment
 BiArray &BiArray::operator=(BiArray &&other) {
-    size = other.size;
-    currentCapacity = other.currentCapacity;
-    emptyHead = other.getHeadEmptyCount();
-    emptyTail = other.emptyTail;
-
-    //Create new array
-    data = new int[currentCapacity];
-
-    //copy values of other array into new arr_
-    for(int i = 0; i < size; i++){
-        data[i] = other.data[i];
-    }
+    copyOther(other);
 
     other.~BiArray();
 
@@ -327,4 +293,19 @@ bool operator!=(const BiArray &lhs, const BiArray &rhs) {
 
 int BiArray::calculateCapacity() {
     return (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
+}
+
+void BiArray::copyOther(BiArray other) {
+    size = other.size;
+    currentCapacity = other.currentCapacity;
+    emptyHead = other.getHeadEmptyCount();
+    emptyTail = other.emptyTail;
+
+    //Create new array
+    data = new int[currentCapacity];
+
+    //copy values of other array into new arr_
+    for(int i = 0; i < size; i++){
+        data[i] = other.data[i];
+    }
 }

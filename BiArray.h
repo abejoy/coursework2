@@ -108,6 +108,8 @@ private:
     int currentCapacity;
 
     int calculateCapacity();
+
+    void copyOther(BiArray other);
 };
 
 static constexpr int INITIALCAP = 5;
