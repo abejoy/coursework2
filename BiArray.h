@@ -106,6 +106,8 @@ private:
     int emptyHead;
     int emptyTail;
     int currentCapacity;
+
+    int calculateCapacity();
 };
 
 static constexpr int INITIALCAP = 5;

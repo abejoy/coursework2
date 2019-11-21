@@ -10,7 +10,7 @@ BiArray::BiArray(): size(0), currentCapacity(INITIALCAP){
 }
 
 // value constructor
-BiArray::BiArray(int arr[], int size) : size(size), currentCapacity((LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP){
+BiArray::BiArray(int arr[], int size) : size(size), currentCapacity(calculateCapacity()){
     // IMPLEMENT ME
     data = new int[getCapacity()];
     if(getSize() == 1){
@@ -154,7 +154,7 @@ void BiArray::push_back(int v) {
         size++;
     }else{
         //cannot push without making aray bigger
-        const int newCapacity = (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
+        const int newCapacity = calculateCapacity();
         int temparr[getSize()];
         for(int i = 0; i < getSize(); i++){
             temparr[i] = data[i];
@@ -181,7 +181,7 @@ bool BiArray::pop_back() {
 
     //check if needing resize
     if(getCapacity() > HI_THRESHOLD * getSize()){
-        int newCapacity = (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
+        int newCapacity = calculateCapacity();
         int tempArr[getSize()];
         for(int i = 0; i < getSize(); i++){
             tempArr[i] = data[i];
@@ -218,7 +218,7 @@ void BiArray::push_front(int v) {
 
     }else{
         //cannot push without making aray bigger
-        const int newCapacity = (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
+        const int newCapacity = calculateCapacity();
         int temparr[getSize()];
         for(int i = 0; i < getSize(); i++){
             temparr[i] = data[i];
@@ -248,7 +248,7 @@ bool BiArray::pop_front() {
 
     //check if needing resize
     if(getCapacity() > HI_THRESHOLD * getSize()){
-        int newCapacity = (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
+        int newCapacity = calculateCapacity();
         int tempArr[getSize()];
         for(int i = 0; i < getSize(); i++){
             tempArr[i] = data[i];
@@ -331,4 +331,8 @@ bool operator==(const BiArray &lhs, const BiArray &rhs) {
 
 bool operator!=(const BiArray &lhs, const BiArray &rhs) {
     return !operator==(lhs, rhs);
+}
+
+int BiArray::calculateCapacity() {
+    return (LO_THRESHOLD*size > INITIALCAP) ? LO_THRESHOLD*size : INITIALCAP;
 }
