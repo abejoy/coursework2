@@ -91,16 +91,10 @@ bool BiArray::set(int i, int v) {
 }
 
 int BiArray::operator[](int i) const {
-    // IMPLEMENT ME
-    // below are just stub code
-
     return data[i];
 }
 
 int &BiArray::operator[](int i) {
-    // IMPLEMENT ME
-    // below are just stub code
-
     return data[i];
 }
 
