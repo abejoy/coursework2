@@ -31,6 +31,9 @@ BiArray::BiArray(int arr[], int size) : size(size), currentCapacity(calculateCap
 
 // destructor
 BiArray::~BiArray() {
+    data -= getHeadEmptyCount();
+    delete[] data;
+    data = nullptr;
 }
 
 // copy constructor
