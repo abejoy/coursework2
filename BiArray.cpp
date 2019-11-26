@@ -11,7 +11,6 @@ BiArray::BiArray(): size(0), currentCapacity(INITIALCAP){
 
 // value constructor
 BiArray::BiArray(int arr[], int size) : size(size), currentCapacity(calculateCapacity()){
-    // IMPLEMENT ME
     data = new int[getCapacity()];
     if(getSize() == 1){
         data += getCapacity()/2;
@@ -31,9 +30,11 @@ BiArray::BiArray(int arr[], int size) : size(size), currentCapacity(calculateCap
 
 // destructor
 BiArray::~BiArray() {
-    data -= getHeadEmptyCount();
-    delete[] data;
-    data = nullptr;
+    if(data) {
+        data -= getHeadEmptyCount();
+        delete[] data;
+        data = nullptr;
+    }
 }
 
 // copy constructor
