@@ -104,7 +104,6 @@ private:
     int size;
     int *data;
     int emptyHead;
-    int emptyTail;
     int currentCapacity;
 
     int calculateCapacity();

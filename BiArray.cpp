@@ -5,7 +5,6 @@
 BiArray::BiArray(): size(0), currentCapacity(INITIALCAP){
     data = new int[getCapacity()];
     emptyHead = getCapacity()/2;
-    emptyTail = getCapacity()/2;
     data += getCapacity()/2;
 }
 
@@ -15,12 +14,10 @@ BiArray::BiArray(int arr[], int size) : size(size), currentCapacity(calculateCap
     if(getSize() == 1){
         data += getCapacity()/2;
         emptyHead = getCapacity()/2;
-        emptyTail = getCapacity()/2;
     }
     else{
         data += getSize();
         emptyHead = getSize();
-        emptyTail = getSize();
     }
 
     for(int i = 0; i < size; i++){
@@ -38,13 +35,11 @@ BiArray::~BiArray() {
 }
 
 // copy constructor
-BiArray::BiArray(const BiArray &other): size(other.getSize()), currentCapacity(other.getCapacity()), emptyHead(other.getHeadEmptyCount()), emptyTail(other.emptyTail){
-
-    size = other.size;
-    currentCapacity = other.currentCapacity;
+BiArray::BiArray(const BiArray &other): size(other.getSize()), currentCapacity(other.getCapacity()), emptyHead(other.getHeadEmptyCount()){
 
     //Create new array
     data = new int[currentCapacity];
+    data += getHeadEmptyCount();
 
     //copy values of other array into new arr_
     for(int i = 0; i < size; i++){
@@ -297,7 +292,6 @@ void BiArray::copyOther(BiArray other) {
     size = other.size;
     currentCapacity = other.currentCapacity;
     emptyHead = other.getHeadEmptyCount();
-    emptyTail = other.emptyTail;
 
     //Create new array
     data = new int[currentCapacity];
