@@ -295,6 +295,7 @@ void BiArray::copyOther(BiArray other) {
 
     //Create new array
     data = new int[currentCapacity];
+    data += getHeadEmptyCount();
 
     //copy values of other array into new arr_
     for(int i = 0; i < size; i++){
